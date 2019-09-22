@@ -1,0 +1,52 @@
+<h1>Sign Up</h1>
+<form (ngSubmit)="register(registerForm)" #registerForm="ngForm" >
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input
+      class="form-control"
+      type="text"
+      name="name"
+      placeholder="Name"
+      [(ngModel)]="user.name"
+      required
+      pattern="[a-zA-Z0-9]*"
+      maxlength="31">
+      <span *ngIf="registerForm.submitted && registerForm.controls.name.errors" class="text-danger animated fadeIn">
+        Name must not contain special characters or whitespaces and must be shorter than 32 characters
+      </span>
+  </div>
+  <div class="form-group">
+    <label for="email">Email address</label>
+    <input
+      class="form-control"
+      type="email"
+      name="email"
+      placeholder="Email"
+      [(ngModel)]="user.email"
+      required
+      email>
+      <span *ngIf="registerForm.submitted && registerForm.controls.email.errors" class="text-danger animated fadeIn">
+        Email must be valid
+      </span>
+  </div>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input
+      class="form-control"
+      type="password"
+      name="password"
+      placeholder="Password"
+      [(ngModel)]="user.password"
+      required>
+      <span *ngIf="registerForm.submitted && registerForm.controls.password.errors" class="text-danger animated fadeIn">
+        Password is required
+      </span>
+  </div>
+  <div>
+    <a routerLink="/login">
+      Already have an account? Log in!
+    </a>
+  </div>
+  <br>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
